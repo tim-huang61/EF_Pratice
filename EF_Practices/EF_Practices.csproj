@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer.cs" />
+    <Compile Include="EFTestContext.cs" />
     <Compile Include="Migrations\201808161652490_InitialCreate.cs" />
     <Compile Include="Migrations\201808161652490_InitialCreate.Designer.cs">
       <DependentUpon>201808161652490_InitialCreate.cs</DependentUpon>
@@ -57,7 +59,12 @@
     <Compile Include="Migrations\201808161702411_Default CreateTime.Designer.cs">
       <DependentUpon>201808161702411_Default CreateTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808161805068_Create Customer.cs" />
+    <Compile Include="Migrations\201808161805068_Create Customer.Designer.cs">
+      <DependentUpon>201808161805068_Create Customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,6 +78,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808161702411_Default CreateTime.resx">
       <DependentUpon>201808161702411_Default CreateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808161805068_Create Customer.resx">
+      <DependentUpon>201808161805068_Create Customer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
