@@ -30,25 +30,32 @@ namespace EF_Practices
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Product>().Ignore(p => p.SPrice);
+            modelBuilder.Entity<Product>().Property(p => p.Money).HasColumnName("Price").HasColumnType("money");
+            modelBuilder.Entity<Product>().HasKey(p => p.PId);
+            modelBuilder.Entity<Product>().Property(p => p.CreateTime)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+            modelBuilder.Entity<Product>().Property(p => p.Name).IsRequired().HasColumnName("ProductName")
+                .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(
+                    new IndexAttribute("ProductName", 2) { IsUnique = true })).HasMaxLength(50);
+            modelBuilder.Entity<Product>().Property(p => p.Category).HasColumnType("NVARCHAR").HasMaxLength(25)
+                .HasColumnAnnotation(IndexAnnotation.AnnotationName,
+                    new IndexAnnotation(new IndexAttribute("CategoryIndex", 1)));
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 
     public class Product
     {
-        [Key]
         public int PId { get; set; }
 
-        [Required]
-        [Index("ProductName", 2, IsUnique = true)]
-        [Column("ProductName")]
         [MaxLength(50, ErrorMessage = "the length can not be over 50")]
         [MinLength(2, ErrorMessage = "the length can not be less 2")]
         public string Name { get; set; }
 
-        [Column("Price", TypeName = "Money")]
         public decimal Money { get; set; }
 
-        [NotMapped]
         public decimal SPrice { get; set; }
 
         /// <summary>
@@ -58,12 +65,8 @@ namespace EF_Practices
         /// <value>
         /// The category.
         /// </value>
-        [Column(TypeName = "NVARCHAR")]
-        [MaxLength(25)]
-        [Index("CategoryIndex", 1)]
         public string Category { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreateTime { get; set; }
     }
 }
