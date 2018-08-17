@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting;
 
@@ -9,9 +10,9 @@ namespace EF_Practices
         private static void Main(string[] args)
         {
             var context = new EFTestContext();
-            var products = context.Customers.ToList();
-
-            context.SaveChanges();
+            context.Database.Log = Console.WriteLine;
+            IEnumerable<Product> products = context.Products.Where(p => p.PId == 1).Where(p=>string.IsNullOrEmpty(p.Name));
+            var list = products.ToList();
 
             Console.Read();
         }
