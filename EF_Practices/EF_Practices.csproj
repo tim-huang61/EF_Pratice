@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,8 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerDemographic.cs" />
+    <Compile Include="EFBasic.cs" />
     <Compile Include="EFTestContext.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Migrations\201808161652490_InitialCreate.cs" />
     <Compile Include="Migrations\201808161652490_InitialCreate.Designer.cs">
       <DependentUpon>201808161652490_InitialCreate.cs</DependentUpon>
@@ -64,9 +70,19 @@
       <DependentUpon>201808161805068_Create Customer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="NorthwindContext.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Order_Detail.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="Models\Shipper.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\TCustomer.cs" />
+    <Compile Include="Models\Territory.cs" />
+    <Compile Include="Models\Test.cs" />
+    <Compile Include="Models\TProduct.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -10,9 +10,9 @@ namespace EF_Practices
         {
         }
 
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<TProduct> Products { get; set; }
 
-        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<TCustomer> Customers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,10 +24,11 @@ namespace EF_Practices
 
         private void SetCustmer(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>().HasKey(c => c.Id);
-            modelBuilder.Entity<Customer>().Property(c => c.Name).IsRequired().HasColumnName("CustomerName").HasMaxLength(10);
-            modelBuilder.Entity<Customer>().HasIndex(c => c.Name).HasName("CustomerNameIndex").IsClustered(false);
-            modelBuilder.Entity<Customer>().Property(c => c.CreateTime).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+            modelBuilder.Entity<TCustomer>().ToTable("Customers");
+            modelBuilder.Entity<TCustomer>().HasKey(c => c.Id);
+            modelBuilder.Entity<TCustomer>().Property(c => c.Name).IsRequired().HasColumnName("CustomerName").HasMaxLength(10);
+            modelBuilder.Entity<TCustomer>().HasIndex(c => c.Name).HasName("CustomerNameIndex").IsClustered(false);
+            modelBuilder.Entity<TCustomer>().Property(c => c.CreateTime).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
         }
 
         /// <summary>
@@ -37,14 +38,15 @@ namespace EF_Practices
         /// <param name="modelBuilder">The model builder.</param>
         private void SetProduct(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().Ignore(p => p.SPrice);
-            modelBuilder.Entity<Product>().Property(p => p.Money).HasColumnName("Price").HasColumnType("money");
-            modelBuilder.Entity<Product>().HasKey(p => p.PId);
-            modelBuilder.Entity<Product>().Property(p => p.CreateTime).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
-            modelBuilder.Entity<Product>().Property(p => p.Name).IsRequired().HasColumnName("ProductName") .HasMaxLength(50)
+            modelBuilder.Entity<TProduct>().ToTable("Products");
+            modelBuilder.Entity<TProduct>().Ignore(p => p.SPrice);
+            modelBuilder.Entity<TProduct>().Property(p => p.Money).HasColumnName("Price").HasColumnType("money");
+            modelBuilder.Entity<TProduct>().HasKey(p => p.PId);
+            modelBuilder.Entity<TProduct>().Property(p => p.CreateTime).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+            modelBuilder.Entity<TProduct>().Property(p => p.Name).IsRequired().HasColumnName("ProductName") .HasMaxLength(50)
                 .HasColumnAnnotation(IndexAnnotation.AnnotationName,
                     new IndexAnnotation(new IndexAttribute("ProductName", 2) {IsUnique = true}));
-            modelBuilder.Entity<Product>().Property(p => p.Category).HasColumnType("NVARCHAR").HasMaxLength(25)
+            modelBuilder.Entity<TProduct>().Property(p => p.Category).HasColumnType("NVARCHAR").HasMaxLength(25)
                 .HasColumnAnnotation(IndexAnnotation.AnnotationName,
                     new IndexAnnotation(new IndexAttribute("CategoryIndex", 1)));
         }

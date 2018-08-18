@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EF_Practices
 {
-    public class Product
+    public class TProduct
     {
         public int PId { get; set; }
 

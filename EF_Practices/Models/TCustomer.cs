@@ -1,8 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EF_Practices
 {
-    public class Customer
+    public class TCustomer
     {
         public int Id { get; set; }
 
