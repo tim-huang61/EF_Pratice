@@ -15,7 +15,10 @@ namespace EF_Practices
             // ReloadEntity();
             // ObjectContext();
             // SqlQueryByDbSet();
-            EFInsertAction();
+            // EFInsertAction();
+            // EFDeleteAction();
+            EFLocal();
+
 
             Console.Read();
         }
@@ -93,7 +96,7 @@ namespace EF_Practices
             using (var context = new EFTestContext())
             {
                 context.Database.Log = Console.WriteLine;
-                context.Products.Add(new Product {Name = "MVC 開發實戰", Money = 399, Category = "網頁開發"});
+                context.Products.Add(new Product { Name = "MVC 開發實戰", Money = 399, Category = "網頁開發" });
                 context.Products.AddRange(new List<Product>
                 {
                     new Product {Name = "Docker 入門實戰", Money = 399, Category = "容器"},
@@ -101,6 +104,40 @@ namespace EF_Practices
                 });
 
                 context.SaveChanges();
+            }
+        }
+
+        private static void EFDeleteAction()
+        {
+            using (var context = new EFTestContext())
+            {
+                // EF Remove, RemoveRange是一筆一筆刪除
+                context.Database.Log = Console.WriteLine;
+                var product = context.Products.FirstOrDefault();
+                context.Products.Remove(product);
+                var products = context.Products.Where(p => p.PId > 1);
+                context.Products.RemoveRange(products);
+
+                context.SaveChanges();
+            }
+        }
+
+        private static void EFLocal()
+        {
+            using (var context = new EFTestContext())
+            {
+                context.Database.Log = Console.WriteLine;
+                var local = context.Products.Local;
+                Console.WriteLine($"Local: {local.Count}");
+                foreach (var product in context.Products)
+                {
+
+                }
+
+                Console.WriteLine($"Query-Local: {local.Count}");
+                context.Products.Add(new Product { Name = "大話重購", Money = 399, Category = "重購" });
+                Console.WriteLine($"Add-Local: {local.Count}");
+                Console.WriteLine($"Really-Local: {context.Products.Count()}");
             }
         }
     }
