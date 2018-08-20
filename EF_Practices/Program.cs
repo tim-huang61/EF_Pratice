@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EF_Practices
 {
@@ -19,12 +16,12 @@ namespace EF_Practices
             // EFBasic.EFDeleteAction();
             // EFBasic.EFLocal();
 
-
-            EFQueryAndFilter.SelectMany();
-            EFQueryAndFilter.OfType();
-            EFQueryAndFilter.GroupByCondition();
-            EFQueryAndFilter.Lookup();
-            EFQueryAndFilter.GetProducts();
+            // EFQueryAndFilter.SelectMany();
+            // EFQueryAndFilter.OfType();
+            // EFQueryAndFilter.GroupByCondition();
+            // EFQueryAndFilter.Lookup();
+            // EFQueryAndFilter.GetProducts();
+            // EFQueryAndFilter.JoinGroup();
 
             Console.Read();
         }

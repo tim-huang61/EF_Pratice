@@ -69,4 +69,46 @@ static internal class EFQueryAndFilter
             Console.WriteLine(item);
         }
     }
+
+    public static void JoinGroup()
+    {
+        var context = new NorthwindContext();
+        context.Database.Log = Console.WriteLine;
+        var item1 = context.Customers.GroupJoin(context.Orders, c => c.CustomerID, o => o.CustomerID, (c, o) => new
+        {
+            Customer = c,
+            Orders = o
+        }).ToList();
+
+        var item2 = context.Customers.GroupJoin(context.Orders, c => c.CustomerID, o => o.CustomerID, (c, o) => new
+        {
+            Customer = c,
+            Orders = o
+        }).SelectMany(item => item.Orders.DefaultIfEmpty(), (item, order) =>
+            new
+            {
+                CustomerID = item.Customer.CustomerID,
+                OrderID = order == null ? 0 : order.OrderID
+            }
+        ).ToList();
+
+        var item3 = (from customer in context.Customers
+            join order in context.Orders
+                on customer.CustomerID equals order.CustomerID into os
+            select new
+            {
+                Customer = customer,
+                Orders = os
+            }).ToList();
+
+        var item4 = (from customer in context.Customers
+            join order in context.Orders
+                on customer.CustomerID equals order.CustomerID into os
+            from o in os.DefaultIfEmpty()
+            select new
+            {
+                CustomerID = customer.CustomerID,
+                OrderID = o == null ? 0 : o.OrderID
+            }).ToList();
+    }
 }
