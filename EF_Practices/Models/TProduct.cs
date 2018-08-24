@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EF_Practices.Models;
 
 namespace EF_Practices
 {
@@ -27,5 +28,7 @@ namespace EF_Practices
         public string Category { get; set; }
 
         public DateTime CreateTime { get; set; }
+
+        public virtual TBook Book { get; set; }
     }
 }

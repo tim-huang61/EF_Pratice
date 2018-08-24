@@ -52,6 +52,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFQueryAndFilter.cs" />
+    <Compile Include="Migrations\201808240755244_add orders orderdetails.cs" />
+    <Compile Include="Migrations\201808240755244_add orders orderdetails.Designer.cs">
+      <DependentUpon>201808240755244_add orders orderdetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808240830461_Add Users, UserRole.cs" />
+    <Compile Include="Migrations\201808240830461_Add Users, UserRole.Designer.cs">
+      <DependentUpon>201808240830461_Add Users, UserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808240904470_Add Booke.cs" />
+    <Compile Include="Migrations\201808240904470_Add Booke.Designer.cs">
+      <DependentUpon>201808240904470_Add Booke.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerDemographic.cs" />
@@ -71,6 +83,11 @@
       <DependentUpon>201808161805068_Create Customer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\TBook.cs" />
+    <Compile Include="Models\TOrder.cs" />
+    <Compile Include="Models\TOrderDetail.cs" />
+    <Compile Include="Models\TUserRole.cs" />
+    <Compile Include="Models\TUser.cs" />
     <Compile Include="NorthwindContext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Order_Detail.cs" />
@@ -98,6 +115,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808161805068_Create Customer.resx">
       <DependentUpon>201808161805068_Create Customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808240755244_add orders orderdetails.resx">
+      <DependentUpon>201808240755244_add orders orderdetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808240830461_Add Users, UserRole.resx">
+      <DependentUpon>201808240830461_Add Users, UserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808240904470_Add Booke.resx">
+      <DependentUpon>201808240904470_Add Booke.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
